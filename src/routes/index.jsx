@@ -16,7 +16,7 @@ import Account from "../components/Settings/Account";
 const router=createBrowserRouter([
     {
         path:"/",
-        element: <App/>,
+        element: <Home/>,
         children: [
             {
                 path:"home",
