@@ -11,7 +11,7 @@ import { IoIosSearch } from "react-icons/io";
 import { Link, Outlet } from 'react-router-dom';
 const Home = () => {
 
-  const [selected,setSelected]=useState("")
+  const [selected,setSelected]=useState("chats")
   return (
     <div>
       
