@@ -57,7 +57,7 @@ const [image, setImage] = useState(whatsAppImage)
         
         <div className='flex items-center justify-between shadow-md px-1 py-4 sticky top-0 bg-white'>
             <div className='flex items-center justify-center gap-1 '>
-                <Link to={'/'}><IoArrowBack size={25}/></Link>
+                <Link to={'/home'}><IoArrowBack size={25}/></Link>
                 {/* <p className='w-12 h-12 bg-black rounded-full'></p> */}
                    <img src={image} className='w-12 h-12 rounded-full '/> 
                 <div onClick={voewProfile} className='px-2'>
