@@ -7,10 +7,14 @@ import { MdOutlineQrCodeScanner } from 'react-icons/md'
 import { IoCameraOutline } from 'react-icons/io5'
 import { CiMenuKebab } from 'react-icons/ci'
 import { IoIosSearch } from 'react-icons/io'
+import { MdOutlineCall } from "react-icons/md";
+import { MdOutlineVideocam } from "react-icons/md";
+import { PiChatTextLight } from "react-icons/pi";
 const HomeChat = () => {
 
   const [image, setImage] = useState(dp)
 
+  const [isPicVisible,setIsPicVisible]=useState(false)
 
   const [visibleMenu,setVisibleMenu]=useState(false)
     const navigate=useNavigate()
@@ -26,8 +30,10 @@ const HomeChat = () => {
         navigate('/openChat')
     }
   return (
-    <div>
-                {/* Header */}
+    <div className='relative'>
+
+      <div className={`${isPicVisible ? 'opacity-30':'opacity-100'}`}>
+                       {/* Header */}
 
      <div className='flex items-center justify-between px-4 py-4 shadow-sm sticky top-0 bg-white '>
             <div>
@@ -71,7 +77,7 @@ const HomeChat = () => {
  </div>
 
      </div> */}
-      </div>
+    </div>
   
  
    
@@ -81,14 +87,15 @@ const HomeChat = () => {
         <p><IoIosSearch size={25}/></p>
         <button className='px-2'>Search...</button>
       </div>
+  
      </div>
           
-          <div className='py-3 hover:bg-slate-200 ' onClick={openChat}>
+          <div className='py-3 hover:bg-slate-200 ' >
             <div className='flex justify-between px-2' >
-              <div className='flex gap-3'>
+              <div className='flex gap-3' onClick={()=>{setIsPicVisible(true)}}>
             {/* <p className='w-12 h-12 rounded-full bg-black cursor-pointer'></p> */}
                  <img src={image} className='w-12 h-12 rounded-full object-cover cursor-pointer'/> 
-               <div className='overflow-hidden cursor-pointer' >
+               <div className='overflow-hidden cursor-pointer' onClick={openChat}>
                <p className='text-xl'>Daramalla Pavan</p>
                <p className=' '> message message ....  </p>
                </div>
@@ -131,12 +138,45 @@ const HomeChat = () => {
                
             </div>
           </div>
+     
           <div className='py-3 hover:bg-slate-200 ' onClick={openChat}>
             <div className='flex justify-between px-2' >
               <div className='flex gap-3'>
             {/* <p className='w-12 h-12 rounded-full bg-black cursor-pointer'></p> */}
                  <img src={image} className='w-12 h-12 rounded-full object-cover cursor-pointer'/> 
                <div className='overflow-hidden cursor-pointer' >
+               <p className='text-xl'>Daramalla Pavan</p>
+               <p className=' '> message message ....  </p>
+               </div>
+              </div>
+              <div>
+                <p className='text-sm'>Yesterday</p>
+              </div>
+               
+            </div>
+          </div>
+          <div className='py-3 hover:bg-slate-200 ' onClick={openChat}>
+            <div className='flex justify-between px-2' >
+              <div className='flex gap-3'>
+            {/* <p className='w-12 h-12 rounded-full bg-black cursor-pointer'></p> */}
+                 <img src={image} className='w-12 h-12 rounded-full object-cover cursor-pointer'/> 
+               <div className='overflow-hidden cursor-pointer' >
+               <p className='text-xl'>Daramalla Pavan</p>
+               <p className=' '> message message ....  </p>
+               </div>
+              </div>
+              <div>
+                <p className='text-sm'>Yesterday</p>
+              </div>
+               
+            </div>
+          </div>
+          <div className='py-3 hover:bg-slate-200 ' >
+            <div className='flex justify-between px-2' >
+              <div className='flex gap-3' onClick={()=>{setIsPicVisible(true)}}>
+            {/* <p className='w-12 h-12 rounded-full bg-black cursor-pointer'></p> */}
+                 <img src={image} className='w-12 h-12 rounded-full object-cover cursor-pointer'/> 
+               <div className='overflow-hidden cursor-pointer' onClick={openChat}>
                <p className='text-xl'>Daramalla Pavan</p>
                <p className=' '> message message ....  </p>
                </div>
@@ -179,22 +219,7 @@ const HomeChat = () => {
                
             </div>
           </div>
-          <div className='py-3 hover:bg-slate-200 ' onClick={openChat}>
-            <div className='flex justify-between px-2' >
-              <div className='flex gap-3'>
-            {/* <p className='w-12 h-12 rounded-full bg-black cursor-pointer'></p> */}
-                 <img src={image} className='w-12 h-12 rounded-full object-cover cursor-pointer'/> 
-               <div className='overflow-hidden cursor-pointer' >
-               <p className='text-xl'>Daramalla Pavan</p>
-               <p className=' '> message message ....  </p>
-               </div>
-              </div>
-              <div>
-                <p className='text-sm'>Yesterday</p>
-              </div>
-               
-            </div>
-          </div>
+     
           <div className='py-3 hover:bg-slate-200 ' onClick={openChat}>
             <div className='flex justify-between px-2' >
               <div className='flex gap-3'>
@@ -244,7 +269,22 @@ const HomeChat = () => {
             </div>
           </div>
     
+
+      </div>
+
+    <div >
+    {
+        isPicVisible && (
+        <div className='flex items-center justify-center bg-black bg-opacity-30'>
+          <div className='flex items-center justify-center bg-white'>
+          </div>
+        </div>
+        )
+      }
+    </div>
+ 
      
+    
 
 
     </div>

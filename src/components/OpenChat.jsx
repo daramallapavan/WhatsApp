@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MdOutlineVideocam } from "react-icons/md";
 import { MdOutlineCall } from "react-icons/md";
 import { CiMenuKebab } from "react-icons/ci";
@@ -13,6 +13,10 @@ import {GoogleMap, Marker, LoadScript} from '@react-google-maps/api'
 import whatsAppImage from '../assest/dp.jpg'
 const OpenChat = () => {
 const [image, setImage] = useState(whatsAppImage)
+
+
+
+
     const apiKey="AIzaSyC26rbYwOJyNck3DCMAGSeqdH5ysyYVOxc";
     // const [currentLocation,setCurrentLocation]=useState()
     // useEffect(()=>{
@@ -45,6 +49,26 @@ const [image, setImage] = useState(whatsAppImage)
     // }
 
 
+    const [message,setMessage]=useState("")
+
+    const [messages,setMessages]=useState([])
+
+    const chatEndRef=useRef(null)
+
+    const scrollToBottom=()=>{
+        chatEndRef.current?.scrollIntoView({behavior: "smooth"})
+    }
+
+    useEffect(()=>{
+        scrollToBottom()
+    },[messages])
+
+    const handleSendMessage=()=>{
+        if(message.trim()){
+            setMessages([...messages,{text: message,isSender: messages.length %2===0}])
+            setMessage("")
+        }
+    }
  
 
     const navigate=useNavigate()
@@ -96,14 +120,32 @@ const [image, setImage] = useState(whatsAppImage)
         }
        </div>  */}
        {/* AIzaSyC26rbYwOJyNck3DCMAGSeqdH5ysyYVOxc */}
-    
+    <div className='flex-1 p-4 overflow-y-auto space-y-4 mb-20'> 
+        {
+            messages.map((msg,index)=>(
+                <div key={index} className={`flex ${msg.isSender ? "justify-end": "justify-start"}`}>
+                    <div className={`p-3 rounded-lg max-w-xs ${msg.isSender ? "bg-green-500 text-white": "bg-gray-300"}`}>
+                        {msg.text}
+                    </div>        
+                </div>
+            ))
+        }
+
+    </div>
+    <div ref={chatEndRef}>
+
+    </div>
 
 
         <div className='fixed bottom-1 w-full rounded-full bg-white shadow-lg border py-3 px-3'>
             <div className='flex items-center justify-between gap-2'>
                <div className='flex gap-4'>
                <p><MdOutlineEmojiEmotions size={25}/></p>
-               <input type='text' placeholder='Message' className='outline-none'/ >
+               <input type='text'
+                placeholder='Message' 
+                className='outline-none'
+                onChange={(e)=>setMessage(e.target.value)}onKeyDown={(e)=>e.key==="Enter" && handleSendMessage()}
+                / >
                </div>
                <div className='flex gap-4'>
                 <p><MdAttachFile size={25}/></p>
@@ -113,7 +155,7 @@ const [image, setImage] = useState(whatsAppImage)
             </div>
        
 
-         </div>
+        </div>
    
         
       
