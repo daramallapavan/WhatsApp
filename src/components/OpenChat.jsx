@@ -120,11 +120,11 @@ const [image, setImage] = useState(whatsAppImage)
         }
        </div>  */}
        {/* AIzaSyC26rbYwOJyNck3DCMAGSeqdH5ysyYVOxc */}
-    <div className='flex-1 p-4 overflow-y-auto space-y-4 mb-20'> 
+    <div className='flex-1 p-4 overflow-y-auto space-y-4 mb-20' > 
         {
             messages.map((msg,index)=>(
-                <div key={index} className={`flex ${msg.isSender ? "justify-end": "justify-start"}`}>
-                    <div className={`p-3 rounded-lg max-w-xs ${msg.isSender ? "bg-green-500 text-white": "bg-gray-300"}`}>
+                <div key={index} className={`flex ${msg.isSender ? "justify-end": "justify-start"} break-words whitespace-pre-wrap`}>
+                    <div className={`px-3 py-3 rounded-lg max-w-xs ${msg.isSender ? "bg-green-500 text-white": "bg-gray-300"}`}>
                         {msg.text}
                     </div>        
                 </div>
@@ -137,14 +137,16 @@ const [image, setImage] = useState(whatsAppImage)
     </div>
 
 
-        <div className='fixed bottom-1 w-full rounded-full bg-white shadow-lg border py-3 px-3'>
+        <div className='fixed bottom-1 w-full rounded-full bg-white shadow-lg border py-3 px-3 ' >
             <div className='flex items-center justify-between gap-2'>
                <div className='flex gap-4'>
                <p><MdOutlineEmojiEmotions size={25}/></p>
                <input type='text'
                 placeholder='Message' 
+                value={message}
                 className='outline-none'
-                onChange={(e)=>setMessage(e.target.value)}onKeyDown={(e)=>e.key==="Enter" && handleSendMessage()}
+                onChange={(e)=>setMessage(e.target.value)}
+                onKeyDown={(e)=>e.key==="Enter" && handleSendMessage()}
                 / >
                </div>
                <div className='flex gap-4'>
